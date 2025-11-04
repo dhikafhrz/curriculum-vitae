@@ -1,0 +1,687 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Variabel Warna */
+:root {
+    --color-primary: #00aaff;
+    --color-primary-dark: #0088cc;
+    --color-bg: #111111;
+    --color-bg-light: #222222;
+    --color-bg-lighter: #333333;
+    --color-text: #eeeeee;
+    --color-text-muted: #aaaaaa;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset dan Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* background-color: var(--color-bg); <-- KITA GANTI INI */
+    color: var(--color-text);
+    line-height: 1.6;
+
+    /* --- BACKGROUND BARU YANG DINAMIS --- */
+    /* Kita gunakan 4 warna: hitam asli (#111), abu-abu gelap (#222), 
+      dan biru tua keunguan (#1a1a2e) agar senada dengan tema.
+    */
+    background: linear-gradient(-45deg,
+            #111111,
+            /* Warna asli Anda */
+            #1a1a2e,
+            /* Warna biru tua keunguan */
+            #222222,
+            /* Warna abu-abu gelap */
+            #111111
+            /* Kembali ke warna asli */
+        );
+    background-size: 400% 400%;
+    /* Membuat gradien besar untuk animasi */
+    animation: animatedBackground 25s ease infinite;
+    /* Menerapkan animasi */
+    /* --- AKHIR BACKGROUND BARU --- */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+.section {
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--color-bg-light);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--color-primary);
+}
+
+/* Navigasi */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(17, 17, 17, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-bg-light);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-menu a {
+    color: var(--color-text-muted);
+    font-weight: 400;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.9)), url('https://source.unsplash.com/1600x900/?technology,data') no-repeat center center/cover;
+    color: white;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+}
+
+.hero-socials {
+    margin-bottom: 2rem;
+}
+
+.hero-socials a {
+    font-size: 2rem;
+    color: white;
+    margin: 0 1rem;
+    transition: transform 0.3s ease;
+}
+
+.hero-socials a:hover {
+    color: var(--color-primary);
+    transform: scale(1.2);
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-3px);
+}
+
+/* About Section */
+.about-content p {
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--color-text-muted);
+}
+
+/* Experience (Timeline) */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--color-primary);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+
+.timeline-item {
+    padding: 1rem 2.5rem;
+    position: relative;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    padding-right: 50px;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.timeline-dot {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: var(--color-bg);
+    border: 3px solid var(--color-primary);
+    border-radius: 50%;
+    top: 24px;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -8px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -8px;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.timeline-content {
+    background-color: var(--color-bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.timeline-content h3 {
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content ul {
+    list-style-type: disc;
+    padding-left: 1.2rem;
+}
+
+.timeline-content ul li {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.3rem;
+}
+
+/* filepath: c:\404-filenotfound\njajal\cv-tenan\index.html (inline styles) */
+.experience-dropdown {
+    margin-bottom: 20px;
+    padding-left: 0; /* hilangkan border-left agar tombol bisa terpusat */
+    border-left: none;
+    position: relative;
+    text-align: center;
+}
+
+.experience-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 0.6rem 1.1rem;
+    margin: 0 auto 1rem auto;
+    background: linear-gradient(90deg, rgba(0,170,255,0.08), rgba(0,170,255,0.04));
+    border: 1px solid rgba(0,170,255,0.14);
+    color: var(--color-text);
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    font-weight: 600;
+    transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.12s ease;
+    width: fit-content;
+}
+
+/* hover / lift effect to indicate interactivity */
+.experience-summary:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(90deg, rgba(0,170,255,0.14), rgba(0,170,255,0.06));
+}
+
+/* keyboard focus visible */
+.experience-summary:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0,170,255,0.12);
+}
+
+/* remove browser default marker */
+.experience-summary::-webkit-details-marker {
+    display: none;
+}
+
+/* chevron icon built with borders (fits inside existing .toggle-icon span) */
+.experience-summary .toggle-icon {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    transform: rotate(45deg);
+    border-right: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    transition: transform 0.18s ease, border-color 0.18s ease;
+    flex: 0 0 12px;
+    margin-left: 2px;
+}
+
+/* rotate/flip chevron when details open */
+details[open] .experience-summary .toggle-icon {
+    transform: rotate(-135deg); /* points up */
+    border-color: var(--color-primary-dark);
+}
+
+/* label styling */
+.experience-summary .toggle-label {
+    color: var(--color-text);
+    white-space: nowrap;
+    font-size: 0.98rem;
+}
+
+/* keep timeline content layout unchanged but ensure spacing under button */
+.experience-dropdown .timeline {
+    padding-top: 8px;
+}
+
+.timeline-item {
+    margin-bottom: 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #333;
+    margin-top: 6px;
+    flex: 0 0 12px;
+}
+
+.timeline-date {
+    min-width: 90px;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 2px;
+    flex: 0 0 90px;
+}
+
+.timeline-content h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+}
+
+.timeline-content p {
+    margin: 0 0 8px 0;
+    color: #666;
+}
+
+/* Education */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.education-card {
+    background-color: var(--color-bg-light);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 170, 255, 0.2);
+}
+
+.education-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.education-card h4 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.education-card p {
+    color: var(--color-text-muted);
+    margin-bottom: 0.2rem;
+}
+
+.education-card ul {
+    list-style-type: disc;
+    padding-left: 1.2rem;
+}
+
+.education-card ul li {
+    color: var(--color-text-muted);
+    margin-bottom: 0.3rem;
+}
+
+/* Skills */
+.skill-category {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-bg-light);
+    padding-bottom: 0.5rem;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 1rem;
+}
+
+.skill-item {
+    background-color: var(--color-bg-light);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: grid;
+}
+
+.skill-item:hover {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    transform: translateY(-5px);
+}
+
+.skill-item i {
+    font-size: 1.5rem;
+    margin-right: 0.7rem;
+    vertical-align: middle;
+}
+
+.skills-grid.soft-skills .skill-item {
+    text-align: left;
+    background-color: var(--color-bg-lighter);
+}
+
+.skills-grid.soft-skills .skill-item:hover {
+    background-color: var(--color-primary-dark);
+    color: white;
+}
+
+.skills ul li {
+    background: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+/* Experience (baru) */
+.experience {
+    margin-bottom: 20px;
+}
+
+.experience h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.job {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border-left: 3px solid #f0f0f0;
+    position: relative;
+}
+
+.job::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #333;
+    border: 2px solid #fff;
+}
+
+.job h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em;
+}
+
+.job p {
+    margin: 0 0 10px 0;
+    font-style: italic;
+    color: #666;
+}
+
+.job ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.job ul li {
+    margin-bottom: 5px;
+}
+
+/* Footer (Contact) */
+.footer {
+    background-color: var(--color-bg-light);
+    padding: 4rem 0 2rem 0;
+    text-align: center;
+}
+
+.footer .section-title {
+    margin-bottom: 1rem;
+}
+
+.footer p {
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.contact-info {
+    margin-bottom: 2rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.contact-info i {
+    margin-right: 0.5rem;
+    color: var(--color-primary);
+}
+
+.footer-socials {
+    margin-bottom: 2rem;
+}
+
+.footer-socials a {
+    font-size: 2rem;
+    color: var(--color-text-muted);
+    margin: 0 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-socials a:hover {
+    color: var(--color-primary);
+    transform: scale(1.2);
+}
+
+.footer-copy {
+    font-size: 0.9rem;
+    color: #777;
+    border-top: 1px solid var(--color-bg-lighter);
+    padding-top: 2rem;
+    margin-top: 2rem;
+}
+
+/* Animasi Scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        /* Sederhanakan untuk demo, bisa diganti burger menu */
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .timeline::after {
+        left: 30px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 1rem;
+        text-align: left !important;
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0;
+        padding-left: 50px;
+    }
+
+    .timeline-dot {
+        left: 22px !important;
+        right: auto !important;
+    }
+}
+
+/* --- Animasi untuk Background --- */
+@keyframes animatedBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
