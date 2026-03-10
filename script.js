@@ -1,27 +1,91 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
-    // 1. Animasi saat Scroll (Intersection Observer)
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+    // --- FUNGSI LOAD CSV ---
+    fetch('data.csv')
+        .then(response => response.text())
+        .then(data => {
+            const rows = data.split('\n').slice(1); // Lewati header
+            const profContainer = document.getElementById('professional-container');
+            const eduContainer = document.getElementById('education-container');
+            const skillContainer = document.getElementById('skills-container');
+            const licenseContainer = document.getElementById('licenses-container');
 
-    const observerCallback = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Hanya animasikan sekali
-            }
+            rows.forEach(row => {
+                if (!row.trim()) return;
+                const [category, title, subtitle, date, desc] = row.split(';');
+
+                if (category === 'professional') {
+                    // Buat elemen pekerjaan
+                    const jobDiv = document.createElement('div');
+                    jobDiv.className = 'job';
+
+                    // Pecah deskripsi berdasarkan tanda koma/titik koma jika ada list
+                    const listItems = desc.split('>').map(item => `<li>${item.trim()}</li>`).join('');
+
+                    jobDiv.innerHTML = `
+                        <h3>${title} | ${subtitle}</h3>
+                        <p><em>${date}</em></p>
+                        <ul>${listItems}</ul>
+                    `;
+                    profContainer.appendChild(jobDiv);
+
+                } else if (category === 'education') {
+                    // Buat elemen edukasi
+                    const eduCard = document.createElement('div');
+                    eduCard.className = 'education-card animate-on-scroll';
+                    eduCard.innerHTML = `
+                        <h3>${title}</h3>
+                        <p>${subtitle} (${date})</p>
+                        <p>${desc || ''}</p>
+                    `;
+                    eduContainer.appendChild(eduCard);
+                }
+
+                else if (category === 'skill') {
+                    const skillCard = document.createElement('div');
+                    skillCard.className = 'skill-category animate-on-scroll';
+                    
+                    // Mengubah deskripsi (yang dipisah koma) menjadi badge/label
+                    const skillBadges = desc.split(',').map(s => `<span class="skill-badge">${s.trim()}</span>`).join('');
+                    
+                    skillCard.innerHTML = `
+                        <h3>${title}</h3>
+                        <div class="skill-list">${skillBadges}</div>
+                    `;
+                    skillContainer.appendChild(skillCard);
+
+                } else if (category === 'license') {
+                    const certCard = document.createElement('div');
+                    certCard.className = 'education-card animate-on-scroll'; // Menggunakan style yang sudah ada
+                    certCard.innerHTML = `
+                        <h3>${title}</h3>
+                        <p><strong>${subtitle}</strong> | ${date}</p>
+                        <p>${desc}</p>
+                    `;
+                    licenseContainer.appendChild(certCard);
+                }
+            });
+
+            // Jalankan ulang observer agar elemen baru teranimasi
+            refreshObserver();
         });
-    };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-    elementsToAnimate.forEach(el => observer.observe(el));
+    // --- ANIMASI SCROLL (Intersection Observer) ---
+    function refreshObserver() {
+        const observerOptions = { threshold: 0.1 };
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        };
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    }
 
 
-    // 2. Navigasi Aktif saat Scroll
+    // Navigasi Aktif saat Scroll
     const sections = document.querySelectorAll('section, header');
     const navLinks = document.querySelectorAll('.nav-menu a');
 

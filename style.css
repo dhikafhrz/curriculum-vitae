@@ -438,7 +438,7 @@ details[open] .experience-summary .toggle-icon {
     margin-bottom: 0.3rem;
 }
 
-/* Skills */
+/* Styling untuk Skill Badges */
 .skill-category {
     font-size: 1.5rem;
     font-weight: 600;
@@ -447,6 +447,31 @@ details[open] .experience-summary .toggle-icon {
     margin-bottom: 1.5rem;
     border-bottom: 2px solid var(--color-bg-light);
     padding-bottom: 0.5rem;
+    background: var(--color-bg-light);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.skill-badge {
+    background: var(--color-primary);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    transition: transform 0.3s ease;
+}
+
+.skill-badge:hover {
+    transform: translateY(-3px);
+    background: var(--color-primary-dark);
 }
 
 .skills-grid {
