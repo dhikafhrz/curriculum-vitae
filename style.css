@@ -182,6 +182,119 @@ a:hover {
     transform: translateY(-3px);
 }
 
+/* ==================== PORTFOLIO SECTION ==================== */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--color-primary);
+    color: var(--color-text);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--color-primary);
+    color: var(--color-bg);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.portfolio-card {
+    background-color: var(--color-bg-light);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 170, 255, 0.15);
+}
+
+.portfolio-img {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.portfolio-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-card:hover .portfolio-img img {
+    transform: scale(1.1);
+}
+
+.portfolio-info {
+    padding: 1.5rem;
+}
+
+.portfolio-info h3 {
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.portfolio-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    background: rgba(0, 170, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.portfolio-info p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.portfolio-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.portfolio-link:hover {
+    color: var(--color-text);
+}
+
+.portfolio-link i {
+    margin-right: 0.5rem;
+}
+
 /* About Section */
 .about-content p {
     font-size: 1.1rem;
@@ -417,6 +530,23 @@ details[open] .experience-summary .toggle-icon {
     margin-bottom: 0.5rem;
 }
 
+.license-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.license-btn:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+
 .education-card h4 {
     color: var(--color-primary);
     margin-bottom: 1rem;
@@ -438,7 +568,7 @@ details[open] .experience-summary .toggle-icon {
     margin-bottom: 0.3rem;
 }
 
-/* Styling untuk Skill Badges */
+/* Skills */
 .skill-category {
     font-size: 1.5rem;
     font-weight: 600;
@@ -447,43 +577,28 @@ details[open] .experience-summary .toggle-icon {
     margin-bottom: 1.5rem;
     border-bottom: 2px solid var(--color-bg-light);
     padding-bottom: 0.5rem;
-    background: var(--color-bg-light);
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
 }
 
-.skill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-}
+    .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 1rem;
+    }
 
-.skill-badge {
-    background: var(--color-primary);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    transition: transform 0.3s ease;
-}
+    .skill-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 170, 255, 0.15);
+        color: var(--color-text);
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        white-space: nowrap;
+    }
 
-.skill-badge:hover {
-    transform: translateY(-3px);
-    background: var(--color-primary-dark);
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-    gap: 1rem;
-}
-
-.skill-item {
-    background-color: var(--color-bg-light);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
     text-align: center;
     font-weight: 600;
     transition: all 0.3s ease;
